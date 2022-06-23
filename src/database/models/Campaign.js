@@ -21,6 +21,7 @@ const Campaign = sequelize.define(
                         timeZone: 'America/El_Salvador'
                     });
             },
+            allowNull: true
         },
         endDate: {
             type: DataTypes.DATE,
@@ -33,7 +34,8 @@ const Campaign = sequelize.define(
         },
         slug: {
             type: DataTypes.STRING,
-            unique: true
+            unique: true,
+            allowNull: true
         },
         active: {
             type: DataTypes.BOOLEAN,
