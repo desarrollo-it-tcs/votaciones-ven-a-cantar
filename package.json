@@ -1,0 +1,24 @@
+{
+  "name": "be-ven-a-cantar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "luxon": "^2.4.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.0",
+    "tzdata": "^1.0.30"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.16",
+    "sequelize-cli": "^6.4.1"
+  }
+}
