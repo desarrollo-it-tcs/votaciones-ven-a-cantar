@@ -1,33 +1,26 @@
 const express = require('express');
-const sequelize = require('./src/database/db');
-const Campaign = require('./src/database/models/Campaign');
-const Singer = require('./src/database/models/Singer');
+const sequelize = require('./src/config/db');
 const { Settings } = require('luxon');
+const apiRouter = require('./src/start/api');
 
 //setting
 const app = express();
 const PORT = process.env.PORT || 3000;
 Settings.defaultZone = 'America/El_Salvador';
 
-//routes
-app.get('/', async (req, res) => {
-    const newCampaign = await Campaign.create({
-        name: 'Campaign 1',
-        startDate: "2022-06-29T02:30:43.000Z",
-        endDate: "2022-06-16T00:00:00.000Z",
-        slug: 'campaign-1',
-    });
-    const newSinger = await Singer.create({
-        name: 'Singer 1',
-        imgUrl: 'https://via.placeholder.com/300x500',
-        slug: 'singer-1',
-    });
-    res.json({
-        'campaing': newCampaign,
-        'singer': newSinger,
-    });
+//middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
 });
-    
+
+//routes
+app.use('/api', apiRouter);
 
 //start server
 app.listen(PORT, function () {
