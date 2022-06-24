@@ -11,19 +11,19 @@ const Campaign = sequelize.define(
         },
         name: {
             type: DataTypes.STRING,
-            unique: true
+            unique: true,
+            allowNull: false,
         },
         imgUrl: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         slug: {
             type: DataTypes.STRING,
             unique: true,
-            allowNull: true
         },
         info: {
             type: DataTypes.STRING,
-            allowNull: true
         },
         createdAt: {
             type: DataTypes.DATE,
@@ -32,7 +32,8 @@ const Campaign = sequelize.define(
                     .toLocaleString('es-SV', {
                         timeZone: 'America/El_Salvador'
                     });
-            }
+            },
+            allowNull: false,
         },
         updatedAt: {
             type: DataTypes.DATE,
@@ -41,7 +42,8 @@ const Campaign = sequelize.define(
                     .toLocaleString('es-SV', {
                         timeZone: 'America/El_Salvador'
                     });
-            }
+            },
+            allowNull: false,
         }
     },
     {
