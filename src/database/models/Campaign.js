@@ -17,10 +17,11 @@ const Campaign = sequelize.define(
         startDate: {
             type: DataTypes.DATE,
             get: function () {
-                return this.getDataValue('startDate')
-                    .toLocaleString('es-SV', {
-                        timeZone: 'America/El_Salvador'
-                    });
+                return this.getDataValue('startDate') ?
+                    this.getDataValue('startDate')
+                        .toLocaleString('es-SV', {
+                            timeZone: 'America/El_Salvador'
+                        }) : null;
             },
         },
         endDate: {
@@ -37,7 +38,7 @@ const Campaign = sequelize.define(
             type: DataTypes.STRING,
             unique: true,
         },
-        active: {
+        status: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },

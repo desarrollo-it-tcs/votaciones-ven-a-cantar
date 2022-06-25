@@ -2,6 +2,7 @@ const express = require('express');
 const sequelize = require('./src/config/db');
 const { Settings } = require('luxon');
 const apiRouter = require('./src/start/api');
+const morgan = require('morgan');
 
 //setting
 const app = express();
@@ -19,6 +20,9 @@ app.use((req, res, next) => {
   next();
 });
 
+//HTTP request logger  
+app.use(morgan('tiny'));
+
 //routes
 app.use('/api', apiRouter);
 
@@ -27,7 +31,7 @@ app.listen(PORT, function () {
     console.log(`Server is running on port ${PORT}`);
 
     //connect to database
-    sequelize.sync({ force: true })
+    sequelize.sync({ force: false })
         .then(() => {
             console.log('Connection database has been established successfully');
         }).catch(err => {

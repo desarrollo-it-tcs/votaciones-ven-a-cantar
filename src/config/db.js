@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-const { database } = require('./config');
+const { database } = require('./general');
 
 const sequelize = new Sequelize(
     database.database,
@@ -7,7 +7,7 @@ const sequelize = new Sequelize(
     database.password, {
     host: database.host,
     dialect: 'mysql',
-    timezone: 'America/El_Salvador',
+    timezone: '+06:00',
 });
 
 module.exports = sequelize

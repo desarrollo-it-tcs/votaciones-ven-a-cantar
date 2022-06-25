@@ -14,7 +14,7 @@ const Campaign = sequelize.define(
             unique: true,
             allowNull: false,
         },
-        imgUrl: {
+        image: {
             type: DataTypes.STRING,
             allowNull: false,
         },
