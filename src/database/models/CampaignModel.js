@@ -27,10 +27,11 @@ const Campaign = sequelize.define(
         endDate: {
             type: DataTypes.DATE,
             get: function () {
-                return this.getDataValue('endDate')
-                    .toLocaleString('es-SV', {
-                        timeZone: 'America/El_Salvador'
-                    });
+                return this.getDataValue('endDate') ?
+                    this.getDataValue('endDate')
+                        .toLocaleString('es-SV', {
+                            timeZone: 'America/El_Salvador'
+                        }) : null;
             },
             allowNull: false,
         },
@@ -45,20 +46,22 @@ const Campaign = sequelize.define(
         createdAt: {
             type: DataTypes.DATE,
             get: function () {
-                return this.getDataValue('createdAt')
-                    .toLocaleString('es-SV', {
-                        timeZone: 'America/El_Salvador'
-                    });
+                return this.getDataValue('createdAt') ?
+                    this.getDataValue('createdAt')
+                        .toLocaleString('es-SV', {
+                            timeZone: 'America/El_Salvador'
+                        }) : null;
             },
             allowNull: false,
         },
         updatedAt: {
             type: DataTypes.DATE,
             get: function () {
-                return this.getDataValue('updatedAt')
-                    .toLocaleString('es-SV', {
-                        timeZone: 'America/El_Salvador'
-                    });
+                return this.getDataValue('updatedAt') ?
+                    this.getDataValue('updatedAt')
+                        .toLocaleString('es-SV', {
+                            timeZone: 'America/El_Salvador'
+                        }) : null;
             },
             allowNull: false,
         }

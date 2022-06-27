@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../config/db');
 
+
 const Campaign = sequelize.define(
     "Singer",
     {
@@ -13,6 +14,7 @@ const Campaign = sequelize.define(
             type: DataTypes.STRING,
             unique: true,
             allowNull: false,
+            unique: true,
         },
         image: {
             type: DataTypes.STRING,
@@ -28,20 +30,22 @@ const Campaign = sequelize.define(
         createdAt: {
             type: DataTypes.DATE,
             get: function () {
-                return this.getDataValue('createdAt')
-                    .toLocaleString('es-SV', {
-                        timeZone: 'America/El_Salvador'
-                    });
+                return this.getDataValue('createdAt') ?
+                    this.getDataValue('createdAt')
+                        .toLocaleString('es-SV', {
+                            timeZone: 'America/El_Salvador'
+                        }) : null;
             },
             allowNull: false,
         },
         updatedAt: {
             type: DataTypes.DATE,
             get: function () {
-                return this.getDataValue('updatedAt')
-                    .toLocaleString('es-SV', {
-                        timeZone: 'America/El_Salvador'
-                    });
+                return this.getDataValue('updatedAt') ?
+                    this.getDataValue('updatedAt')
+                        .toLocaleString('es-SV', {
+                            timeZone: 'America/El_Salvador'
+                        }) : null;
             },
             allowNull: false,
         }

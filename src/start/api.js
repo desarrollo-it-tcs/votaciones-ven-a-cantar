@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const apiCampaignRouter = require('./Routes/Campaign');
-const apiSingerRouter = require('./Routes/singers');
+const apiCampaignRouter = require('./Routes/campaignRoutesController');
+const apiSingerRouter = require('./Routes/singersRoutesController');
 
 router.use('/campaigns', apiCampaignRouter);
 router.use('/singers', apiSingerRouter);
