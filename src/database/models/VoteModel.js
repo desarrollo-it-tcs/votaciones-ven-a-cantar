@@ -1,47 +1,20 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../config/db');
 
-const Campaign = sequelize.define(
-    "campaign",
+const Vote = sequelize.define('vote',
     {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-        },
-        name: {
-            type: DataTypes.STRING,
-            unique: true,
             allowNull: false,
         },
-        startDate: {
-            type: DataTypes.DATE,
-            get: function () {
-                return this.getDataValue('startDate') ?
-                    this.getDataValue('startDate')
-                        .toLocaleString('es-SV', {
-                            timeZone: 'America/El_Salvador'
-                        }) : null;
-            },
-        },
-        endDate: {
-            type: DataTypes.DATE,
-            get: function () {
-                return this.getDataValue('endDate') ?
-                    this.getDataValue('endDate')
-                        .toLocaleString('es-SV', {
-                            timeZone: 'America/El_Salvador'
-                        }) : null;
-            },
+        value: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
-        slug: {
+        dui: {
             type: DataTypes.STRING,
-            unique: true,
-        },
-        status: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
         },
         createdAt: {
             type: DataTypes.DATE,
@@ -64,10 +37,10 @@ const Campaign = sequelize.define(
                         }) : null;
             },
             allowNull: false,
-        }
+        },
     },
     {
         timestamps: true,
     });
 
-module.exports = Campaign;
+module.exports = Vote;

@@ -3,6 +3,7 @@ const sequelize = require('./src/config/db');
 const { Settings } = require('luxon');
 const apiRouter = require('./src/start/api');
 const morgan = require('morgan');
+require('./src/database/asociations');
 
 //setting
 const app = express();

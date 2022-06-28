@@ -3,7 +3,7 @@ const sequelize = require('../../config/db');
 
 
 const Campaign = sequelize.define(
-    "Singer",
+    "singer",
     {
         id: {
             type: DataTypes.INTEGER,
