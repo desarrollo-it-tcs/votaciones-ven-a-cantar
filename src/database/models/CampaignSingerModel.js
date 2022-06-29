@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../config/db');
-const Campaign = require('../../database/models/CampaignModel');
-const Singer = require('../../database/models/SingerModel');
+// const Campaign = require('../../database/models/CampaignModel');
+// const Singer = require('../../database/models/SingerModel');
 
 const CampaignSinger = sequelize.define('Campaign_Singer',
     {

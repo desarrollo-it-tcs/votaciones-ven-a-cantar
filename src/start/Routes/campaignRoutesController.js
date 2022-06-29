@@ -7,9 +7,7 @@ const Singer = require('../../database/models/SingerModel');
 router.get("/", async (req, res) => {
     try {
         const campaigns = await Campaign.findAll({
-            include: [{
-                model: Singer,
-            }]
+            include: Singer
         });
         res.json(campaigns);
     } catch (error) {
@@ -29,26 +27,24 @@ router.get("/:id", (req, res) => {
 });
 
 //create
-router.post("/", (req, res) => {
-    const { name, startDate, endDate, slug, status } = req.body;
-    Campaign.create({
-        'name': name,
-        'startDate': startDate,
-        'endDate': endDate,
-        'slug': slug,
-        'status': status,
-    }).then(async (CampaignResult) => {
-        const { singers } = req.body;
-        singers.forEach(async dominated => {
-            await CampaignSinger.create({
-                'campaignId': CampaignResult.id,
-                'cingerId': dominated.id,
-            })
+router.post("/", async (req, res) => {
+    const { name, startDate, endDate, slug, status, singers } = req.body;
+    try{
+        const newCampaign = await Campaign.create({
+            'name': name,
+            'startDate': startDate,
+            'endDate': endDate,
+            'slug': slug,
+            'status': status,
         });
-        res.json({ 'message': 'Campaign created successfully' });
-    }).catch(err => {
-        res.status(404).json(err);
-    });
+        singers.forEach(async singer => {
+            await newCampaign.addSinger(await Singer.findByPk(singer.id));
+        });
+        console.log(newCampaign);
+        res.send(newCampaign);  
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
 });
 
 //update
