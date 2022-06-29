@@ -1,16 +1,18 @@
 const Campaign = require('../../database/models/CampaignModel');
 const router = require("express").Router();
+const CampaignSinger = require('../../database/models/CampaignSingerModel');
+const Singer = require('../../database/models/SingerModel');
 
 //index
-router.get("/", (req, res) => {
-    Campaign.findAll({
-        order: [['createdAt', 'ASC']]
-    })
-        .then(campaigns => {
-            res.json(campaigns);
-        }).catch(err => {
-            res.json(err);
+router.get("/", async (req, res) => {
+    try {
+        const campaigns = await Campaign.findAll({
+            include: Singer
         });
+        res.json(campaigns);
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
 });
 
 //show
@@ -33,8 +35,15 @@ router.post("/", (req, res) => {
         'endDate': endDate,
         'slug': slug,
         'status': status,
-    }).then((campaign) => {
-        res.json(campaign);
+    }).then(async (CampaignResult) => {
+        const { singers } = req.body;
+        singers.forEach(async dominated => {
+            await CampaignSinger.create({
+                'CampaignId': CampaignResult.id,
+                'SingerId': dominated.id,
+            })
+        });
+        res.json({ 'message': 'Campaign created successfully' });
     }).catch(err => {
         res.status(404).json(err);
     });

@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../../config/db');
 
 const Campaign = sequelize.define(
-    "campaign",
+    "Campaign",
     {
         id: {
             type: DataTypes.INTEGER,
@@ -64,10 +64,11 @@ const Campaign = sequelize.define(
                         }) : null;
             },
             allowNull: false,
-        }
+        },
     },
     {
         timestamps: true,
+        paranoid: true,
     });
 
 module.exports = Campaign;

@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../config/db');
 
-const Vote = sequelize.define('vote',
+const Vote = sequelize.define('Votes',
     {
         id: {
             type: DataTypes.INTEGER,
@@ -41,6 +41,7 @@ const Vote = sequelize.define('vote',
     },
     {
         timestamps: true,
+        paranoid: true,
     });
 
 module.exports = Vote;
