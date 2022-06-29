@@ -7,7 +7,9 @@ const Singer = require('../../database/models/SingerModel');
 router.get("/", async (req, res) => {
     try {
         const campaigns = await Campaign.findAll({
-            include: Singer
+            include: [{
+                model: Singer,
+            }]
         });
         res.json(campaigns);
     } catch (error) {
@@ -39,8 +41,8 @@ router.post("/", (req, res) => {
         const { singers } = req.body;
         singers.forEach(async dominated => {
             await CampaignSinger.create({
-                'CampaignId': CampaignResult.id,
-                'SingerId': dominated.id,
+                'campaignId': CampaignResult.id,
+                'cingerId': dominated.id,
             })
         });
         res.json({ 'message': 'Campaign created successfully' });
