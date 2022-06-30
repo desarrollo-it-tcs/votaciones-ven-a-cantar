@@ -3,7 +3,10 @@ const router = require("express").Router();
 
 //index
 router.get("/", (req, res) => {
-    Singer.findAll().then((singers) => {
+    Singer.findAll({
+        attributes: ['id', 'name', 'image', 'slug', 'info']
+    })
+    .then((singers) => {
         res.json(singers);
     }).catch(err => {
         res.status(404).json(err);

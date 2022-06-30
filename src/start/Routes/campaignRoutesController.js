@@ -1,12 +1,16 @@
-const Campaign = require('../../database/models/CampaignModel');
 const router = require("express").Router();
-const CampaignSinger = require('../../database/models/CampaignSingerModel');
+const Campaign = require('../../database/models/CampaignModel');
 const Singer = require('../../database/models/SingerModel');
+const Campaign_Singer = require('../../database/models/CampaignSingerModel');
+
+Campaign.belongsToMany(Singer, { through: Campaign_Singer });
+Singer.belongsToMany(Campaign, { through: Campaign_Singer });
 
 //index
 router.get("/", async (req, res) => {
     try {
         const campaigns = await Campaign.findAll({
+            attributes: ['id', 'startDate', 'endDate', 'slug', 'status'],
             include: Singer
         });
         res.json(campaigns);
@@ -38,9 +42,8 @@ router.post("/", async (req, res) => {
             'status': status,
         });
         singers.forEach(async singer => {
-            await newCampaign.addSinger(await Singer.findByPk(singer.id));
+            await newCampaign.addSinger(singer.id);
         });
-        console.log(newCampaign);
         res.send(newCampaign);  
     } catch (error) {
         res.status(500).json({ message: error });
