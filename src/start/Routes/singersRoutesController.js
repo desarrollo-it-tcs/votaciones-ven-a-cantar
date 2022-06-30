@@ -25,10 +25,10 @@ router.get("/:id", (req, res) => {
 
 //create
 router.post("/", (req, res) => {
-    const { name, description, image, status } = req.body;
+    const { name, info, image, status } = req.body;
     Singer.create({
         'name': name,
-        'description': description,
+        'info': info,
         'image': image,
         'status': status,
     }).then((singer) => {

@@ -11,7 +11,9 @@ router.get("/", async (req, res) => {
     try {
         const campaigns = await Campaign.findAll({
             attributes: ['name', 'id', 'startDate', 'endDate', 'slug', 'status'],
-            include: Singer
+            include: {
+                model: Singer,
+            }
         });
         res.json(campaigns);
     } catch (error) {
