@@ -33,21 +33,20 @@ router.get("/:id", (req, res) => {
 //create
 router.post("/", async (req, res) => {
     const { name, startDate, endDate, slug, status, singers } = req.body;
-    try{
-        const newCampaign = await Campaign.create({
-            'name': name,
-            'startDate': startDate,
-            'endDate': endDate,
-            'slug': slug,
-            'status': status,
-        });
+    await Campaign.create({
+        'name': name,
+        'startDate': startDate,
+        'endDate': endDate,
+        'slug': slug,
+        'status': status,
+    }).then((newCampaign) => {
         singers.forEach(async singer => {
-            await newCampaign.addSinger(singer.id);
+            await newCampaign.addSinger(singer.id)
         });
-        res.send(newCampaign);  
-    } catch (error) {
-        res.status(500).json({ message: error });
-    }
+        res.json(newCampaign);
+    }).catch(err => {
+        res.json(err);
+    });
 });
 
 //update

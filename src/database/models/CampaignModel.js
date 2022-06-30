@@ -15,23 +15,23 @@ const Campaign = sequelize.define("campaign",
         },
         startDate: {
             type: DataTypes.DATE,
-            get: function () {
-                return this.getDataValue('startDate') ?
-                    this.getDataValue('startDate')
-                        .toLocaleString('es-SV', {
-                            timeZone: 'America/El_Salvador'
-                        }) : null;
-            },
+            // get: function () {
+            //     return this.getDataValue('startDate') ?
+            //         this.getDataValue('startDate')
+            //             .toLocaleString('es-SV', {
+            //                 timeZone: 'America/El_Salvador'
+            //             }) : null;
+            // },
         },
         endDate: {
             type: DataTypes.DATE,
-            get: function () {
-                return this.getDataValue('endDate') ?
-                    this.getDataValue('endDate')
-                        .toLocaleString('es-SV', {
-                            timeZone: 'America/El_Salvador'
-                        }) : null;
-            },
+            // get: function () {
+            //     return this.getDataValue('endDate') ?
+            //         this.getDataValue('endDate')
+            //             .toLocaleString('es-SV', {
+            //                 timeZone: 'America/El_Salvador'
+            //             }) : null;
+            // },
             allowNull: false,
         },
         slug: {
@@ -44,28 +44,30 @@ const Campaign = sequelize.define("campaign",
         },
         createdAt: {
             type: DataTypes.DATE,
-            get: function () {
-                return this.getDataValue('createdAt') ?
-                    this.getDataValue('createdAt')
-                        .toLocaleString('es-SV', {
-                            timeZone: 'America/El_Salvador'
-                        }) : null;
-            },
+            // get: function () {
+            //     return this.getDataValue('createdAt') ?
+            //         this.getDataValue('createdAt')
+            //             .toLocaleString('es-SV', {
+            //                 timeZone: 'America/El_Salvador'
+            //             }) : null;
+            // },
             allowNull: false,
         },
         updatedAt: {
             type: DataTypes.DATE,
-            get: function () {
-                return this.getDataValue('updatedAt') ?
-                    this.getDataValue('updatedAt')
-                        .toLocaleString('es-SV', {
-                            timeZone: 'America/El_Salvador'
-                        }) : null;
-            },
+            // get: function () {
+            //     return this.getDataValue('updatedAt') ?
+            //         this.getDataValue('updatedAt')
+            //             .toLocaleString('es-SV', {
+            //                 timeZone: 'America/El_Salvador'
+            //             }) : null;
+            // },
             allowNull: false,
         },
     },
     {
+        charset: 'utf8',
+        collate: 'utf8_unicode_ci',
         timestamps: true,
         paranoid: true,
     });
