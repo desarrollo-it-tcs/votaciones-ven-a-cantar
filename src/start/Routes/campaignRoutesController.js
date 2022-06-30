@@ -10,7 +10,7 @@ Singer.belongsToMany(Campaign, { through: Campaign_Singer });
 router.get("/", async (req, res) => {
     try {
         const campaigns = await Campaign.findAll({
-            attributes: ['id', 'startDate', 'endDate', 'slug', 'status'],
+            attributes: ['name', 'id', 'startDate', 'endDate', 'slug', 'status'],
             include: Singer
         });
         res.json(campaigns);

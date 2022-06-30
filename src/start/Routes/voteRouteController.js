@@ -7,13 +7,17 @@ Vote.belongsTo(Campaing_Singer);
 
 router.post('/', async (req, res) => {
     const { campaignId, singerId, value } = req.body;
-    const vote_ = await Vote.create({
-        campaign_id,
-        singer_id,
-        vote,
+    const votesNominated = await Campaing_Singer.findOne({
+        where: {
+            'campaignId': campaignId,
+            'singerId': singerId
+        }
     });
-    res.json(vote_);
-
+    const oneVote = await Vote.create({
+        'value': value,
+    });
+    votesNominated.addVote(oneVote);
+    res.json('ya');
 });
 
 module.exports = router;
