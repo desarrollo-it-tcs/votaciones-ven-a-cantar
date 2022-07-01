@@ -8,7 +8,7 @@ require('./src/database/associations');
 
 //setting
 const PORT = process.env.PORT || 3000;
-Settings.defaultZone = 'America/El_Salvador';
+// Settings.defaultZone = 'America/El_Salvador';
 
 //middlewares
 app.use(express.urlencoded({ extended: true }));

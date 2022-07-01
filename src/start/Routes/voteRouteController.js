@@ -12,9 +12,9 @@ router.post('/', async (req, res) => {
     const tokendecode = jwt_decode(req.headers.authorization);
     const { campaignId, singerId, value } = req.body;
     if(tokendecode.email === value){// verificamos que quien envia la solicitud sea el mismo logeado
-        const today = DateTime.now();
+        const today = DateTime.utc();
         const campaign = await Campaign.findByPk(campaignId);
-        const endDate = DateTime.fromJSDate(campaign.endDate);
+        const endDate = campaign.endDate;
         console.log('endDate:       '+endDate.toString());
         console.log('today:         '+today.toString());
         console.log('endDate:       '+endDate);

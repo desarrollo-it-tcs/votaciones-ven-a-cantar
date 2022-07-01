@@ -7,7 +7,6 @@ const sequelize = new Sequelize(
     database.password, {
     host: database.host,
     dialect: 'mysql',
-    timezone: '+06:00',
 });
 
 module.exports = sequelize
