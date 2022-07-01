@@ -41,11 +41,16 @@ router.post("/", async (req, res) => {
         'endDate': endDate,
         'slug': slug,
         'status': status,
-    }).then((newCampaign) => {
+    }).then(async (newCampaign) => {
         singers.forEach(async singer => {
             await newCampaign.addSinger(singer.id)
         });
-        res.json(newCampaign);
+        res.json(await Campaign.findOne({
+            where: { id: newCampaign.id },
+            include: {
+                model: Singer,
+            }
+        }));
     }).catch(err => {
         res.json(err);
     });
