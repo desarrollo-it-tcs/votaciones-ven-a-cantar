@@ -17,7 +17,6 @@ router.post('/', async (req, res) => {
         const endDate = campaign.endDate;
         console.log('endDate:       '+endDate.toString());
         console.log('today:         '+today.toString());
-        console.log('endDate:       '+endDate);
         console.log('today:         '+today);
         const validateDate = endDate.diff(today);
         console.log('validateDate:  '+validateDate);

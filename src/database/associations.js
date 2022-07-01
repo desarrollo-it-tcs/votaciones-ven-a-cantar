@@ -1,7 +1,9 @@
-const Campaign = require('./models/campaignModel');
-const Singer = require('./models/singerModel');
-const Campaign_Singer = require('./models/campaignSingerModel');
-const Vote = require('./models/voteModel');
+const Campaign = require('./models/CampaignModel');
+const Singer = require('./models/SingerModel');
+const Campaign_Singer = require('./models/CampaignSingerModel');
+const Vote = require('./models/VoteModel');
+require('./models/AdminModel')
+require('./models/BannerModel')
 
 //one to many relationship between campaignSinger and vote
 Campaign_Singer.hasMany(Vote);

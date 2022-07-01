@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
             }
         }));
     }).catch(err => {
-        res.json(err);
+        res.status(404).json(err);
     });
 });
 
