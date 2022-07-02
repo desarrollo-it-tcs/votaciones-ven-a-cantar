@@ -19,4 +19,17 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.delete("/:id", async (req, res) => {
+    try {
+        const banner = await Banner.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.json(banner);
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+});
+
 module.exports = router;
