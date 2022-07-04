@@ -1,12 +1,32 @@
 const Vote = require('../../database/models/VoteModel');
 const Campaign_Singer = require('../../database/models/CampaignSingerModel');
 const Campaign = require('../../database/models/CampaignModel');
+const Singer = require('../../database/models/SingerModel');
 const router = require('express').Router();
 const jwt_decode = require('jwt-decode');
 const { DateTime } = require('luxon');
 
 Campaign_Singer.hasMany(Vote);
 Vote.belongsTo(Campaign_Singer);
+
+router.get('/:id', async (req, res) => {
+    var result = new Array();
+    const votesCampaign = await Campaign_Singer.findAll({
+        where: {
+            'campaignId': req.params.id,
+        },
+        include: Vote,
+    });
+    for (let i = 0; i < votesCampaign.length; i++){
+        var singer = await Singer.findByPk(votesCampaign[i].singerId);
+        var temp = {
+            'name': singer.name,
+            'votes': votesCampaign[i].votes.length,
+        };
+        result.push(temp);
+    }
+    res.json(result);
+});
 
 router.post('/', async (req, res) => {
     const tokendecode = jwt_decode(req.headers.authorization);
