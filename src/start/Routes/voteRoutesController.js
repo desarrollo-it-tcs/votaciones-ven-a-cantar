@@ -81,7 +81,8 @@ router.post('/', async (req, res) => {
                         });
                 } else {
                     res.status(400).json({
-                        message: 'You already voted for this voting'
+                        status: 1001,
+                        message: 'Ya has votado'
                     });
                 }
             } catch (err) {
