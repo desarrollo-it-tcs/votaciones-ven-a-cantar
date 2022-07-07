@@ -18,24 +18,10 @@ const Vote = sequelize.define('votes',
         },
         createdAt: {
             type: DataTypes.DATE,
-            // get: function () {
-            //     return this.getDataValue('createdAt') ?
-            //         this.getDataValue('createdAt')
-            //             .toLocaleString('es-SV', {
-            //                 timeZone: 'America/El_Salvador'
-            //             }) : null;
-            // },
             allowNull: false,
         },
         updatedAt: {
             type: DataTypes.DATE,
-            // get: function () {
-            //     return this.getDataValue('updatedAt') ?
-            //         this.getDataValue('updatedAt')
-            //             .toLocaleString('es-SV', {
-            //                 timeZone: 'America/El_Salvador'
-            //             }) : null;
-            // },
             allowNull: false,
         },
     },

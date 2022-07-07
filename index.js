@@ -1,14 +1,12 @@
 const express = require('express');
 const app = express();
 const sequelize = require('./src/config/db');
-const { Settings } = require('luxon');
 const apiRouter = require('./src/start/api');
 const morgan = require('morgan');
 require('./src/database/associations');
 
 //setting
 const PORT = process.env.PORT || 3000;
-// Settings.defaultZone = 'America/El_Salvador';
 
 //middlewares
 app.use(express.urlencoded({ extended: true }));
